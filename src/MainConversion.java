@@ -33,7 +33,7 @@ public class MainConversion {
     }
   }
 
-  public void csvFileToText(String  filename, String textFileName, String sidFilter) throws FileNotFoundException {
+  public void csvFileToText(String  filename, String textFileName, String filterBox) throws FileNotFoundException {
     //makes file out of the csv filename
     File file = new File(filename);
     Vector<Vector> wholeFile = new Vector<>();
@@ -91,17 +91,17 @@ public class MainConversion {
       PrintWriter oFile = new PrintWriter(textFileName, "Cp1252");
 
       //writing SID
-      if(sidFilter==null){
+      if(filterBox==null){
         oFile.println(inOrder.get(1).get(0));
       }else {
-        oFile.println(sidFilter);
+        oFile.println(filterBox);
       }
       oFile.println();
 
       for (int i = 1; i < inOrder.size(); i++) {
         Vector<String> currLine = inOrder.get(i);
 
-        if (sidFilter == null || sidFilter.equals(currLine.get(0))) {
+        if (filterBox == null || filterBox.equals(currLine.get(0))) {
           //writes parent node
           oFile.println(currLine.get(1));
 

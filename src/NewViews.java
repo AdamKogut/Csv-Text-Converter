@@ -19,7 +19,7 @@ public class NewViews {
   private JTextField toFileName;
   private JLabel statusLbl;
   private JPanel panel;
-  private JLabel recentConvLbl;
+  private JLabel recentConvLbl; //even though not used, it still must be there for program to work
   private JButton recentButton4;
   private JButton recentButton3;
   private JButton recentButton2;
@@ -28,7 +28,7 @@ public class NewViews {
   private JLabel recentLbl2;
   private JLabel recentLbl3;
   private JLabel recentLbl4;
-  private JTextField sidFilter;
+  private JTextField filterBox;
   private MainConversion mc;
   private File fromFile;
   private File toFile;
@@ -73,7 +73,7 @@ public class NewViews {
 
     //sets the text box letters to gray
     toFileName.setForeground(Color.gray);
-    sidFilter.setForeground(Color.gray);
+    filterBox.setForeground(Color.gray);
 
     //creates the array to store the recent conversions
     String[][] recentArray = new String[4][3];
@@ -88,8 +88,8 @@ public class NewViews {
       //sets the text boxes to their original text and makes them gray
       toFileName.setText("Enter text file name here");
       toFileName.setForeground(Color.gray);
-      sidFilter.setText("SID Filter (Optional)");
-      sidFilter.setForeground(Color.gray);
+      filterBox.setText("Filter (Optional)");
+      filterBox.setForeground(Color.gray);
 
       //clears out the current files and resets their text
       fromFile = null;
@@ -184,14 +184,14 @@ public class NewViews {
     });
 
     //clears the filter text box when the user hasn't changed the filter and the text box is clicked
-    sidFilter.addMouseListener(new MouseAdapter() {
+    filterBox.addMouseListener(new MouseAdapter() {
       @Override
       public void mouseClicked(MouseEvent e) {
         super.mouseClicked(e);
-        if (sidFilter.getText().equals("SID Filter (Optional)")) {
-          sidFilter.setText("");
+        if (filterBox.getText().equals("Filter (Optional)")) {
+          filterBox.setText("");
         }
-        sidFilter.setForeground(Color.BLACK);
+        filterBox.setForeground(Color.BLACK);
       }
     });
   }
@@ -203,7 +203,7 @@ public class NewViews {
    */
   private void sendToConverter() throws FileNotFoundException {
     //checks if the filter text box has been changed
-    if (sidFilter.getText().equals("") || sidFilter.getText().equals("SID Filter (Optional)")) {
+    if (filterBox.getText().equals("") || filterBox.getText().equals("Filter (Optional)")) {
       //checks if the user inputted file name includes the .txt extension
       if (toFileName.getText().length() < 5 || !toFileName.getText().substring(toFileName.getText().length() - 4).equals(".txt")) {
         //adds the .txt extension and sends the files to the converter
@@ -216,10 +216,10 @@ public class NewViews {
       //checks if the user inputted file name includes the .txt extension
       if (toFileName.getText().length() < 5 || !toFileName.getText().substring(toFileName.getText().length() - 4).equals(".txt")) {
         //adds the .txt extension and sends the files to the converter
-        mc.csvFileToText(fromFile.getAbsolutePath(), toFile.getPath() + '\\' + toFileName.getText() + ".txt", sidFilter.getText());
+        mc.csvFileToText(fromFile.getAbsolutePath(), toFile.getPath() + '\\' + toFileName.getText() + ".txt", filterBox.getText());
       } else {
         //sends the files to the converter
-        mc.csvFileToText(fromFile.getAbsolutePath(), toFile.getPath() + '\\' + toFileName.getText(), sidFilter.getText());
+        mc.csvFileToText(fromFile.getAbsolutePath(), toFile.getPath() + '\\' + toFileName.getText(), filterBox.getText());
       }
     }
   }
@@ -240,11 +240,11 @@ public class NewViews {
     toFileLbl.setText(recentArray[chosenNum][1].substring(0, recentArray[chosenNum][1].lastIndexOf('\\') + 1));
     fromFileLbl.setText(fromFile.getAbsolutePath());
     if (recentArray[chosenNum][2] != null) {
-      sidFilter.setText(recentArray[chosenNum][2]);
-      sidFilter.setForeground(Color.BLACK);
+      filterBox.setText(recentArray[chosenNum][2]);
+      filterBox.setForeground(Color.BLACK);
     } else {
-      sidFilter.setForeground(Color.gray);
-      sidFilter.setText("SID Filter (Optional)");
+      filterBox.setForeground(Color.gray);
+      filterBox.setText("Filter (Optional)");
     }
     //resets the buttons to their original set up
     toFileName.setForeground(Color.BLACK);
@@ -273,8 +273,8 @@ public class NewViews {
     recentArray[1][2] = recentArray[0][2];
     recentArray[0][0] = fromFile.getAbsolutePath();
     recentArray[0][1] = toFile.getPath() + '\\' + toFileName.getText();
-    if (sidFilter.getText() != null && !sidFilter.getText().equals("SID Filter (Optional)")) {
-      recentArray[0][2] = sidFilter.getText();
+    if (filterBox.getText() != null && !filterBox.getText().equals("Filter (Optional)")) {
+      recentArray[0][2] = filterBox.getText();
     } else {
       recentArray[0][2] = null;
     }
