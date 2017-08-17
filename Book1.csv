@@ -1,0 +1,11 @@
+SID,ParentNode,Preferred Term,Synonyms,ChildNode1,ChildNode2,ChildNode3,ChildNode4,Definition,ChildNode
+SID A,ParentNode 1,ParentNode A,,ChildNode A,ChildNode B,ChildNode C,ChildNode D,def1,
+SID A,ParentNode 2,ParentNode B,Synonym 5::Synonym 6,ChildNode G,ChildNode H,,,def2,
+SID A,ChildNode E,ChildNode E,Synonym 4,,,,,def3,
+SID A,ChildNode A,ChildNode A,Synonym 1::Synonym2::Synonym 3,,,,,def4,
+SID A,ChildNode C,ChildNode C,,,,,,def5,
+SID A,ChildNode B,ChildNode B,,ChildNode E,ChildNode F,,,def6,
+SID A,ChildNode H,ChildNode H,Synonym 7,,,,,def7,
+SID A,ChildNode G,ChildNode G,,,,,,def8,
+SID A,ChildNode F,ChildNode F,,,,,,def9,
+SID A,ChildNode D,ChildNode D,,,,,,def10,
